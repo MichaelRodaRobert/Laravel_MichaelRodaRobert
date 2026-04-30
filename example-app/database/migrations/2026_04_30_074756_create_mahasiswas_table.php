@@ -12,11 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
-            $table->id(); // primary key (bigint, auto increment)
-            $table->string('nama'); // kolom varchar
-            $table->string('npm')->unique(); // kolom unik
-            $table->string('prodi');
-            $table->timestamps(); // created_at & updated_at
+            $table->primary('id');
+            $table->char('npm', 10)->unique();
+            $table->string('nama', 50);
+            $table->string('tempat_lahir', 50);
+            $table->date('tanggal_lahir');
+
+            //references kolom id yg ada di tabel fakultas
+            $table->foreign('prodi_id')->references('id')->on('prodis')
+            ->cascadeOnDelete()->cascadeOnUpdate();
+            $table->timestamps();
         });
     }
 

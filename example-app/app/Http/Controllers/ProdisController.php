@@ -3,19 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fakultas;
-use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 
-class MahasiswaController extends Controller
+class ProdiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $mahasiswa = Mahasiswa::all();
-        return view("mahasiswa.index")->with("mahasiswa", $mahasiswa);
-    }
+{
+    $prodis = Prodi::with('fakultas')->get();
+    return view('prodi.index', compact('prodis'));
+}
 
 }
