@@ -12,13 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('prodis', function (Blueprint $table) {
-            $table->primary('id');
-            $table->string('nama');
-            $table->uuid('fakultas_id');
-
-            //references kolom id yg ada di tabel fakultas
-            $table->foreign('fakultas_id')->references('id')->on('fakultas')
-            ->cascadeOnDelete()->cascadeOnUpdate();
+            $table->id();
+            $table->string('nama_prodi');
+            $table->char('singkatan',2);
+            $table->string('kaprodi',30);
+            $table->foreignId('fakultas_id')->constrained('fakultas')->onDelete('cascade');
             $table->timestamps();
         });
     }

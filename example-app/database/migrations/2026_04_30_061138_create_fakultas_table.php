@@ -12,16 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('fakultas', function (Blueprint $table) {
-
-            $table->uuid('id');
-            $table->primary('id');
-            $table->string('nama', 45);
+            $table->id();
+            $table->string('nama');
+            $table->string('singkatan');
             $table->timestamps();
         });
     }
 
     /**
-     * Hapus tabel fakultas
+     * Reverse the migrations.
      */
     public function down(): void
     {
